@@ -103,12 +103,12 @@ jobs:
       if: (!cancelled())
       run: df -hT
 
-    - name: Upload bin directory
-      uses: actions/upload-artifact@main
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
-      with:
-        name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: openwrt/bin
+#    - name: Upload full bin directory
+#      uses: actions/upload-artifact@main
+#      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+#      with:
+#        name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+#        path: openwrt/bin
 
     - name: Organize files
       id: organize
@@ -119,6 +119,13 @@ jobs:
         rm -rf openwrt/bin/targets/*/*/*.img.gz
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
+
+    - name: Upload bin directory
+      uses: actions/upload-artifact@main
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+      with:
+        name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: openwrt/bin
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
