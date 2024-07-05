@@ -117,6 +117,7 @@ jobs:
         rm -rf openwrt/bin/targets/*/*/packages
         rm -rf openwrt/bin/targets/*/*/*.vmdk
         rm -rf openwrt/bin/targets/*/*/*.img.gz
+        rm -rf openwrt/bin/targets/*/*/*.tar.xz
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
