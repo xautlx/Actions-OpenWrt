@@ -114,7 +114,7 @@ jobs:
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        rm -rf openwrt/bin/targets/packages
+        rm -rf openwrt/bin/packages
         rm -rf openwrt/bin/targets/*/*/packages
         rm -rf openwrt/bin/targets/*/*/*.vmdk
         rm -rf openwrt/bin/targets/*/*/*.img.gz
